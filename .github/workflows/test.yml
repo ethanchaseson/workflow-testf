@@ -1,0 +1,17 @@
+name: Test Workflow
+on: [push, pull_request]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Show environment
+        run: |
+          echo "Testing artifact access"
+          echo "Repo: ${{ github.repository }}"
+          ls -la
+      - name: Upload artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: test-artifact
+          path: .github/
